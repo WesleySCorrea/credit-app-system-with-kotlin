@@ -29,6 +29,6 @@ data class Credit (
     val status: Status = Status.IN_PROGRESS,
 
     @ManyToOne
-    var custumer: Custumer? = null
+    var customer: Customer? = null
 
 )
