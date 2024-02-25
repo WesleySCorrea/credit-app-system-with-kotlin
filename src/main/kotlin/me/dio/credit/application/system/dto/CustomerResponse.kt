@@ -5,6 +5,7 @@ import me.dio.credit.application.system.entities.Customer
 import java.math.BigDecimal
 
 data class CustomerResponse(
+    val id: Long?,
     val firstName: String,
     val lastName: String,
     val cpf: String,
@@ -14,6 +15,7 @@ data class CustomerResponse(
     val street: String
 ) {
     constructor(customer: Customer): this (
+        id = customer.id,
         firstName = customer.firstName,
         lastName = customer.lastName,
         cpf = customer.cpf,
