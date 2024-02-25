@@ -25,7 +25,8 @@ class CreditService(
     }
 
     override fun findByCreditCode(customerId: Long, creditCode: UUID): Credit {
-        val credit: Credit = this.repository.findByCreditCode(creditCode)?: throw RuntimeException("Credid code $creditCode not found")
+        val credit: Credit = this.repository.findByCreditCode(creditCode)
+            ?: throw RuntimeException("Credid code $creditCode not found")
         return if (credit.customer?.id == customerId) credit else throw RuntimeException("This credit code not pertence at this client")
     }
 }

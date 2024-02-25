@@ -5,6 +5,8 @@ spring:
     password:
   jpa:
     show-sql: true
+    properties:
+      format_sql: true
   h2:
     console:
       enabled: true

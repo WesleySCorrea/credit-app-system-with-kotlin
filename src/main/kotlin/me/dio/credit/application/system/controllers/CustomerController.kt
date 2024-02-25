@@ -20,34 +20,35 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/customers")
 class CustomerController(
-    private val custumerService: CustomerService
+    private val customerService: CustomerService
 ) {
 
     @PostMapping
     fun saveCustomer(@RequestBody customerDTO: CustomerDTO): ResponseEntity<String> {
-        val newCustomer = this.custumerService.save(customerDTO.toEntity())
+        val newCustomer = this.customerService.save(customerDTO.toEntity())
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Customer ${newCustomer.email} saved!")
     }
 
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<CustomerResponse> {
-        val customer: Customer = this.custumerService.findById(id)
+        val customer: Customer = this.customerService.findById(id)
 
         return ResponseEntity.status(HttpStatus.OK).body(CustomerResponse(customer))
     }
 
     @DeleteMapping("/{id}")
     fun deleteCustomer(@PathVariable id: Long) {
-        this.deleteCustomer(id)
+        println("Teste")
+        this.customerService.delete(id)
     }
 
     @PatchMapping
     fun updateCustomer(@RequestParam(value = "id") id: Long,
                        @RequestBody customerUpdateDTO: CustomerUpdateDTO): ResponseEntity<CustomerResponse> {
-        var customer: Customer = this.custumerService.findById(id)
+        var customer: Customer = this.customerService.findById(id)
         var customerToUpdate: Customer = customerUpdateDTO.toEntity(customer)
-        var custumerUpdated: Customer = this.custumerService.save(customerToUpdate)
+        var custumerUpdated: Customer = this.customerService.save(customerToUpdate)
 
         return ResponseEntity.status(HttpStatus.OK).body(CustomerResponse(custumerUpdated))
     }

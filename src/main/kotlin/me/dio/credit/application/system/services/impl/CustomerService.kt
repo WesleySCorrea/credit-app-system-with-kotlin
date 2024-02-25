@@ -22,6 +22,7 @@ class CustomerService(
     }
 
     override fun delete(id: Long){
+        println("Teste")
         return this.repository.deleteById(id)
     }
 }
